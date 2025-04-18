@@ -46,28 +46,8 @@ if st.button("SCAN") and user_input.strip():
     ("I love spending time with my family and friends.", 0),
     ("She enjoys reading books on rainy days.", 0),
     ("He loves playing chess in the evening.", 0),
-    ("They traveled to Paris for their honeymoon.", 0),
-    ("I always drink coffee in the morning.", 0),
-    ("She dances to her favorite songs at home.", 0),
-    ("We watched a movie last night.", 0),
-    ("The children are playing in the park.", 0),
-    ("My dog loves to chase after the ball.", 0),
-    ("The ocean waves crashed against the shore.", 0),
-    ("He enjoys painting landscapes in his free time.", 0),
-    ("We visited the museum yesterday.", 0),
-    ("She always wears her favorite blue dress.", 0),
-    ("The rain is falling softly outside.", 0),
-    ("They had a wonderful dinner at a restaurant.", 0),
-    ("I prefer reading books to watching movies.", 0),
-    ("The flowers in the garden are blooming beautifully.", 0),
-    ("He played the guitar at the concert.", 0),
     ("We went hiking in the mountains last weekend.", 0),
     ("The cake was delicious and freshly baked.", 0),
-    ("She smiled as she saw the rainbow in the sky.", 0),
-    ("They celebrated their anniversary at a fancy hotel.", 0),
-    ("I finished my homework early today.", 0),
-    ("He bought a new car last week.", 0),
-    ("I love watching the sunset by the beach.", 0),
     ("She helped me with my project last night.", 0),
     ("The city lights looked beautiful from the rooftop.", 0),
     ("We went to a concert last Friday.", 0),
@@ -88,41 +68,6 @@ if st.button("SCAN") and user_input.strip():
     ("I spent the evening listening to music and relaxing.", 0),
     ("We visited the botanical garden to see the flowers.", 0),
     ("He played his favorite song on the piano.", 0),
-    ("She spent the day volunteering at the animal shelter.", 0),
-    ("We went to a new restaurant for dinner.", 0),
-    ("I took a walk in the park to clear my mind.", 0),
-    ("The candles created a warm, cozy atmosphere in the room.", 0),
-    ("She enjoys watching documentaries on history.", 0),
-    ("We had a picnic near the riverbank.", 0),
-    ("I spent some time journaling about my day.", 0),
-    ("She loves to ride her bike through the neighborhood.", 0),
-    ("We went to the carnival and rode the Ferris wheel.", 0),
-    ("He tried a new recipe for dinner and it turned out great.", 0),
-    ("She spent the afternoon gardening in her backyard.", 0),
-    ("We saw a beautiful rainbow after the storm.", 0),
-    ("I took a photo of the flowers blooming in spring.", 0),
-    ("She wore her favorite boots on the hike.", 0),
-    ("We visited a local vineyard for a wine tasting.", 0),
-    ("I love to watch the snowflakes fall during winter.", 0),
-    ("He spent the afternoon reading a book at the café.", 0),
-    ("She went to the market to buy fresh produce.", 0),
-    ("We played a game of charades with our friends.", 0),
-    ("He baked a cake to celebrate his birthday.", 0),
-    ("We went for a drive along the coast.", 0),
-    ("She enjoyed a relaxing day at the spa.", 0),
-    ("I watched a beautiful documentary about wildlife.", 0),
-    ("We had a game night with board games and snacks.", 0),
-    ("She made a scrapbook of her travels around the world.", 0),
-    ("I went to a concert and enjoyed the live music.", 0),
-    ("They enjoyed a romantic dinner under the stars.", 0),
-    ("He spent the day fishing at the lake.", 0),
-    ("We went on a road trip and visited several cities.", 0),
-    ("I sat by the fire and enjoyed a cup of tea.", 0),
-    ("She took a relaxing bubble bath after a long day.", 0),
-    ("We saw a movie and had popcorn for snacks.", 0),
-    ("She loved making homemade candles for gifts.", 0),
-    ("We took a walk in the forest and enjoyed the quiet.", 0),
-    ("He played a new video game with his friends.", 0),
     ("We went to the beach to watch the sunrise.", 0),
     ("She spent the evening reading by candlelight.", 0),
      ]
@@ -223,14 +168,19 @@ if st.button("SCAN") and user_input.strip():
         prediction = classifier.predict([vector])[0]
         proba = classifier.predict_proba([vector])[0]
         confidence = proba[prediction] * 100
-        return ("AI-generated" if prediction == 1 else "Human-written", confidence)
+         return ("Human-written" if prediction == 0 else "AI-written", confidence)
 
-    result, confidence = detect_ai_text(user_input)
-
-    # Output section
-    st.markdown("### 📊 Result:")
-    st.success(f"**Prediction:** {result}")
-    st.info(f"**Confidence:** {confidence:.2f}%")
-
-else:
-    st.markdown("Enter a sentence and click the button to get a prediction.")
+# Add user input functionality
+if __name__ == "__main__":
+    print("AI Text Detector")
+    print("Bla-bla type something here")
+    print("Type 'quit' to exit\n")
+    
+    while True:
+        user_input = input("Enter a sentence: ")
+        if user_input.lower() == 'quit':
+            break
+        result, confidence = detect_ai_text(user_input)
+        print(f"Prediction: {result} (Confidence: {confidence:.2f}%)\n")
+    
+    print("Thank you for using our program :) ")
