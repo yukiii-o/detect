@@ -3,7 +3,7 @@ import streamlit as st
 # Streamlit page setup
 st.set_page_config(page_title="AI Text Detector", page_icon="🤖", layout="centered")
 
-st.title("AIDENTIFY - AI Text Detector      (Beta 1.2)")
+st.title("AIDENTIFY - AI Text Detector (Beta 1.2)")
 st.markdown("Welcome! Paste a sentence or paragraph below and find out if it was **AI-generated** or **Human-written**. (Take note, this website may not be accurate, as it was formulated only by Grade 12 students who may lack experience.)")
 
 # Large input area
