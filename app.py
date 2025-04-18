@@ -387,7 +387,7 @@ data = [
 ("She spent the evening reading by candlelight.", 0),
 ]
 
-    texts, labels = zip(*data)
+texts, labels = zip(*data)
 
     def preprocess(text):
         text = text.lower()
