@@ -168,7 +168,7 @@ if st.button("SCAN") and user_input.strip():
         prediction = classifier.predict([vector])[0]
         proba = classifier.predict_proba([vector])[0]
         confidence = proba[prediction] * 100
-        return ("Human-written" if prediction == 0 else "AI-written", confidence)
+        return ("fuck AI" if prediction == 0 else "Human", confidence)
 
     result, confidence = detect_ai_text(user_input)
 
