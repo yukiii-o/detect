@@ -1,13 +1,28 @@
 import streamlit as st
 
+# Streamlit page setup
+st.set_page_config(page_title="AI Text Detector", page_icon="🤖", layout="centered")
+
+st.title("AIDENTIFY - AI Text Detector")
+st.markdown("Welcome! Paste a sentence or paragraph below and find out if it was **AI-generated** or **Human-written**.")
+
+# Large input area
+user_input = st.text_area("Input your text here:", height=200, placeholder="Type or paste your text...")
+
+# Detection logic triggers on button click
+if st.button("SCAN") and user_input.strip():
+    # ====== Begin original code block ======
+
+    import math
 # Dataset (need to modify to add more stuff here): 1 = human-written, 0 = AI-generated
 data = [
-    #AI:
+    #Human-written:
     ("The AI-generated content is becoming more advanced.", 1),
     ("Machine learning models can generate realistic text.", 1),
     ("AI-generated text is often indistinguishable from human writing.", 1),
     ("In the course of this life I have had a great many encounters with a great many people who have been concerned with matters of consequence.", 1),
 ("If one gets lost in the night, such knowledge is valuable.", 1),
+("Then I would never talk to that person about boa constrictors, or primeval forests, or stars.", 1),
 ("Remember, I had crashed in the desert a thousand miles from any inhabited region.", 1),
 ("When a mystery is too overpowering, one dare not disobey.", 1),
 ("But I had never drawn a sheep.", 1),
@@ -116,8 +131,6 @@ data = [
 (" Inside, just visible, was a baby boy, fast asleep.", 1),
 ("Dumbledore turned and walked back down the street.", 1),
 (" He could just see the bundle of blankets on the step of number four", 1),
-("His aunt was back outside the door. ", 1),
-("I want you to look after the bacon.", 1),
 ("It was a very sunny Saturday and the zoo was crowded with families.", 1),
 ("Dudley quickly found the largest snake in the place.", 1),
 ("He shuffled away.", 1),
@@ -168,7 +181,7 @@ data = [
 ("This was a merchant who sold pills that had been invented to quench thirst.", 1),
 
 
-#Human-written:
+#AI written:
    ("This is a human-written sentence.", 0),
   ("I enjoy reading books and writing stories.", 0),
   ("Natural language processing is a fascinating field.", 0),
@@ -490,7 +503,7 @@ def detect_ai_text(text):
     prediction = classifier.predict([vector])[0]
     proba = classifier.predict_proba([vector])[0]
     confidence = proba[prediction] * 100
-    return ("AI-Generated" if prediction == 0 else "Human-written", confidence)
+    return ("Human-written" if prediction == 1 else "AI-written", confidence)
 
 # Add user input functionality
 if __name__ == "__main__":
