@@ -168,19 +168,13 @@ if st.button("SCAN") and user_input.strip():
         prediction = classifier.predict([vector])[0]
         proba = classifier.predict_proba([vector])[0]
         confidence = proba[prediction] * 100
-         return ("Human-written" if prediction == 0 else "AI-written", confidence)
+        return ("Human-written" if prediction == 0 else "AI-written", confidence)
 
-# Add user input functionality
-if __name__ == "__main__":
-    print("AI Text Detector")
-    print("Bla-bla type something here")
-    print("Type 'quit' to exit\n")
-    
-    while True:
-        user_input = input("Enter a sentence: ")
-        if user_input.lower() == 'quit':
-            break
-        result, confidence = detect_ai_text(user_input)
-        print(f"Prediction: {result} (Confidence: {confidence:.2f}%)\n")
-    
+    result, confidence = detect_ai_text(user_input)
+
+    # Output section
+    st.markdown("### 📊 Result:")
+    st.success(f"**Prediction:** {result}")
+    st.info(f"**Confidence:** {confidence:.2f}%")
+
     print("Thank you for using our program :) ")
